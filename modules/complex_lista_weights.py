@@ -65,8 +65,8 @@ class ComplexLISTA_Weights(Module):
             ai = torch.matmul(yi, Wret) + torch.matmul(yr, Wiet)
             
             # Apply hg conv1d branch to x^(t) for t-th iteration
-            hrgt = self.wg[t] @ model.C
-            higt = self.wg[t] @ model.S
+            hrgt = self.wg[t] @ self.C
+            higt = self.wg[t] @ self.S
             br = conv1d(xr.unsqueeze(1), hrgt, padding='same') - conv1d(xi.unsqueeze(1), higt, padding='same')
             bi = conv1d(xi.unsqueeze(1), hrgt, padding='same') + conv1d(xr.unsqueeze(1), higt, padding='same')
             
